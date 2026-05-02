@@ -10,10 +10,12 @@
 <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'%3E%3Crect width='180' height='180' rx='40' fill='%230A3323'/%3E%3Crect x='38' y='30' width='58' height='78' rx='6' fill='%23839958'/%3E%3Crect x='52' y='44' width='58' height='78' rx='6' fill='%23D3968C'/%3E%3Crect x='62' y='56' width='58' height='78' rx='6' fill='%23105666'/%3E%3Cline x1='74' y1='74' x2='108' y2='74' stroke='%23F7F4D5' stroke-width='5' stroke-linecap='round'/%3E%3Cline x1='74' y1='86' x2='108' y2='86' stroke='%23F7F4D5' stroke-width='5' stroke-linecap='round'/%3E%3Cline x1='74' y1='98' x2='95' y2='98' stroke='%23F7F4D5' stroke-width='5' stroke-linecap='round'/%3E%3C/svg%3E">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230A3323'/%3E%3Crect x='5' y='4' width='10' height='14' rx='2' fill='%23839958'/%3E%3Crect x='9' y='7' width='10' height='14' rx='2' fill='%23D3968C'/%3E%3Crect x='12' y='10' width='10' height='14' rx='2' fill='%23105666'/%3E%3C/svg%3E">
 <style>
-:root{--bg:#0a1a10;--bg2:#0f2318;--bg3:#162d1e;--bg4:#1c3a26;--green:#0A3323;--moss:#839958;--beige:#F7F4D5;--pink:#D3968C;--teal:#105666;--text:#F7F4D5;--text2:#c8c5a8;--text3:#839958;--border:rgba(131,153,88,0.15);--border2:rgba(131,153,88,0.28);}
+:root{--bg:#0a1a10;--bg2:#0f2318;--bg3:#162d1e;--bg4:#1c3a26;--green:#0A3323;--moss:#839958;--beige:#F7F4D5;--pink:#D3968C;--teal:#105666;--text:#F7F4D5;--text2:#c8c5a8;--text3:#839958;--border:rgba(131,153,88,0.15);--border2:rgba(131,153,88,0.28);--reader-bg:#0a1a10;--reader-text:#F7F4D5;--reader-fs:17px;}
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
 html,body{height:100%;overflow:hidden;background:var(--bg);font-family:Verdana,Geneva,Tahoma,sans-serif;color:var(--text);}
 #app{height:100dvh;display:flex;flex-direction:column;max-width:480px;margin:0 auto;position:relative;overflow:hidden;}
+
+/* HEADER */
 .header{padding:52px 20px 12px;background:var(--bg);flex-shrink:0;border-bottom:0.5px solid var(--border);}
 .header-top{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:14px;}
 .app-name{font-size:24px;font-weight:bold;color:var(--beige);}
@@ -27,6 +29,8 @@ html,body{height:100%;overflow:hidden;background:var(--bg);font-family:Verdana,G
 .pill{background:var(--bg3);border:0.5px solid var(--border);border-radius:20px;padding:6px 13px;font-size:12px;font-family:Verdana,sans-serif;color:var(--text3);white-space:nowrap;cursor:pointer;transition:all 0.2s;flex-shrink:0;}
 .pill.active{background:var(--green);border-color:var(--moss);color:var(--beige);}
 .pill-pink.active{background:#3a1a18;border-color:var(--pink);color:#f5d0c8;}
+
+/* GRID */
 .grid-scroll{flex:1;overflow-y:auto;padding:16px 16px 100px;scrollbar-width:none;}
 .grid-scroll::-webkit-scrollbar{display:none;}
 .grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
@@ -40,27 +44,38 @@ html,body{height:100%;overflow:hidden;background:var(--bg);font-family:Verdana,G
 .book-info{padding:9px 10px 11px;}
 .book-title-card{font-size:12px;font-weight:bold;color:var(--beige);line-height:1.35;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;margin-bottom:4px;}
 .book-fandom-card{font-size:11px;color:var(--text3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+
+/* EMPTY */
 .empty-state{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;gap:14px;padding-bottom:80px;}
 .empty-title{font-size:20px;font-weight:bold;color:var(--text2);}
 .empty-sub{font-size:13px;color:var(--text3);text-align:center;line-height:1.7;max-width:230px;}
 .no-results{text-align:center;padding:40px 20px;color:var(--text3);font-size:14px;}
+
+/* BOTTOM NAV */
 .bottom-nav{position:absolute;bottom:0;left:0;right:0;max-width:480px;margin:0 auto;background:var(--bg);border-top:0.5px solid var(--border);padding:10px 0 28px;display:flex;justify-content:space-around;z-index:10;}
 .nav-item{display:flex;flex-direction:column;align-items:center;gap:5px;cursor:pointer;padding:4px 24px;}
 .nav-label{font-size:11px;font-family:Verdana,sans-serif;color:var(--text3);}
 .nav-item.active .nav-label{color:var(--moss);}
 .nav-dot{width:4px;height:4px;border-radius:50%;background:var(--moss);opacity:0;}
 .nav-item.active .nav-dot{opacity:1;}
-.detail-page{position:absolute;inset:0;background:var(--bg);z-index:20;transform:translateX(100%);transition:transform 0.35s cubic-bezier(0.32,0.72,0,1);display:flex;flex-direction:column;max-width:480px;margin:0 auto;overflow:hidden;}
-.detail-page.open{transform:translateX(0);}
-.detail-topbar{padding:52px 20px 14px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;background:var(--bg);border-bottom:0.5px solid var(--border);}
-.detail-back{display:flex;align-items:center;gap:8px;cursor:pointer;color:var(--moss);font-size:14px;font-weight:bold;}
-.detail-edit-btn{background:var(--bg3);border:0.5px solid var(--border2);border-radius:20px;padding:7px 16px;font-family:Verdana,sans-serif;font-size:12px;color:var(--beige);cursor:pointer;}
-.detail-scroll{flex:1;overflow-y:auto;scrollbar-width:none;padding-bottom:40px;}
-.detail-scroll::-webkit-scrollbar{display:none;}
+
+/* SHARED PAGE STYLES */
+.page{position:absolute;inset:0;background:var(--bg);z-index:20;transform:translateX(100%);transition:transform 0.35s cubic-bezier(0.32,0.72,0,1);display:flex;flex-direction:column;max-width:480px;margin:0 auto;overflow:hidden;}
+.page.open{transform:translateX(0);}
+.page.z30{z-index:30;}
+.page.z40{z-index:40;}
+.topbar{padding:52px 20px 14px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;background:var(--bg);border-bottom:0.5px solid var(--border);}
+.tb-back{display:flex;align-items:center;gap:8px;cursor:pointer;color:var(--moss);font-size:14px;font-weight:bold;}
+.tb-btn{background:var(--bg3);border:0.5px solid var(--border2);border-radius:20px;padding:7px 16px;font-family:Verdana,sans-serif;font-size:12px;color:var(--beige);cursor:pointer;}
+.tb-btn-moss{background:var(--moss);border:none;border-radius:20px;padding:8px 18px;font-family:Verdana,sans-serif;font-size:13px;font-weight:bold;color:var(--bg);cursor:pointer;}
+.page-scroll{flex:1;overflow-y:auto;scrollbar-width:none;padding-bottom:40px;}
+.page-scroll::-webkit-scrollbar{display:none;}
+
+/* DETAIL */
 .detail-hero{display:flex;gap:16px;padding:20px 20px 0;}
 .detail-cover{width:110px;min-width:110px;aspect-ratio:2/3;border-radius:10px;overflow:hidden;background:var(--bg3);flex-shrink:0;}
 .detail-cover img{width:100%;height:100%;object-fit:cover;}
-.detail-cover-placeholder{width:100%;height:100%;display:flex;align-items:center;justify-content:center;}
+.detail-cover-ph{width:100%;height:100%;display:flex;align-items:center;justify-content:center;}
 .detail-hero-info{flex:1;min-width:0;padding-top:4px;}
 .detail-title{font-size:18px;font-weight:bold;color:var(--beige);line-height:1.3;margin-bottom:5px;}
 .detail-author{font-size:13px;color:var(--text3);margin-bottom:12px;}
@@ -83,13 +98,12 @@ html,body{height:100%;overflow:hidden;background:var(--bg);font-family:Verdana,G
 .dtag{font-size:12px;padding:5px 12px;border-radius:20px;background:#1a3320;border:0.5px solid var(--moss);color:#c8dca0;}
 .dtag.pink{background:#3a1a18;border-color:var(--pink);color:#f0c8c0;}
 .summary-box{background:var(--bg3);border-radius:10px;padding:14px 16px;border:0.5px solid var(--border);font-size:14px;color:var(--text2);line-height:1.8;}
-.dl-btn{margin:20px 20px 0;background:var(--pink);border:none;border-radius:24px;color:#fff;font-family:Verdana,sans-serif;font-size:15px;font-weight:bold;padding:15px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:9px;width:calc(100% - 40px);}
-.dl-btn:active{opacity:0.85;}
-.edit-page{position:absolute;inset:0;background:var(--bg);z-index:30;transform:translateX(100%);transition:transform 0.35s cubic-bezier(0.32,0.72,0,1);display:flex;flex-direction:column;max-width:480px;margin:0 auto;}
-.edit-page.open{transform:translateX(0);}
-.edit-topbar{padding:52px 20px 14px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;background:var(--bg);border-bottom:0.5px solid var(--border);}
-.edit-back{display:flex;align-items:center;gap:8px;cursor:pointer;color:var(--moss);font-size:14px;font-weight:bold;}
-.edit-save-btn{background:var(--moss);border:none;border-radius:20px;padding:8px 18px;font-family:Verdana,sans-serif;font-size:13px;font-weight:bold;color:var(--bg);cursor:pointer;}
+.btn-row{display:flex;gap:10px;padding:20px 20px 0;}
+.read-btn{flex:1;background:var(--moss);border:none;border-radius:24px;color:var(--bg);font-family:Verdana,sans-serif;font-size:14px;font-weight:bold;padding:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;}
+.dl-btn{flex:1;background:var(--pink);border:none;border-radius:24px;color:#fff;font-family:Verdana,sans-serif;font-size:14px;font-weight:bold;padding:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;}
+.read-btn:active,.dl-btn:active{opacity:0.85;}
+
+/* EDIT */
 .edit-body{flex:1;overflow-y:auto;padding:16px 20px 40px;scrollbar-width:none;}
 .edit-body::-webkit-scrollbar{display:none;}
 .ef{margin-bottom:14px;}
@@ -97,6 +111,30 @@ html,body{height:100%;overflow:hidden;background:var(--bg);font-family:Verdana,G
 .ef-input{width:100%;background:var(--bg3);border:0.5px solid var(--border2);border-radius:10px;padding:10px 13px;font-size:14px;color:var(--beige);font-family:Verdana,sans-serif;outline:none;-webkit-appearance:none;}
 .ef-input:focus{border-color:var(--moss);}
 textarea.ef-input{resize:none;line-height:1.6;}
+
+/* READER */
+.reader-page{position:absolute;inset:0;background:var(--reader-bg);z-index:50;transform:translateX(100%);transition:transform 0.35s cubic-bezier(0.32,0.72,0,1);display:flex;flex-direction:column;max-width:480px;margin:0 auto;overflow:hidden;}
+.reader-page.open{transform:translateX(0);}
+.reader-topbar{padding:52px 16px 12px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;background:var(--reader-bg);border-bottom:0.5px solid rgba(131,153,88,0.15);}
+.reader-back{display:flex;align-items:center;gap:8px;cursor:pointer;color:var(--moss);font-size:14px;font-weight:bold;font-family:Verdana,sans-serif;}
+.reader-controls{display:flex;align-items:center;gap:10px;}
+.reader-fs-btn{background:var(--bg3);border:0.5px solid var(--border2);border-radius:8px;padding:6px 12px;font-family:Verdana,sans-serif;font-size:13px;font-weight:bold;color:var(--beige);cursor:pointer;}
+.reader-mode-btn{background:var(--bg3);border:0.5px solid var(--border2);border-radius:8px;padding:6px 10px;font-family:Verdana,sans-serif;font-size:12px;color:var(--beige);cursor:pointer;}
+.reader-scroll{flex:1;overflow-y:auto;scrollbar-width:none;padding:24px 16px 60px;}
+.reader-scroll::-webkit-scrollbar{display:none;}
+.reader-title{font-family:Verdana,sans-serif;font-size:16px;font-weight:bold;color:var(--reader-text);margin-bottom:4px;line-height:1.4;}
+.reader-author{font-family:Verdana,sans-serif;font-size:12px;color:var(--text3);margin-bottom:24px;}
+.reader-divider{width:40px;height:2px;background:var(--moss);border-radius:1px;margin-bottom:24px;}
+.reader-content{font-family:Georgia,'Times New Roman',serif;font-size:var(--reader-fs);color:var(--reader-text);line-height:1.9;word-break:break-word;}
+.reader-content p{margin-bottom:1.2em;}
+.reader-content h1,.reader-content h2,.reader-content h3{font-family:Verdana,sans-serif;color:var(--moss);margin:1.5em 0 0.5em;font-size:1em;}
+.reader-content hr{border:none;border-top:1px solid var(--border2);margin:2em 0;}
+.reader-light{--reader-bg:#F7F4D5;--reader-text:#1a2e10;}
+.reader-light .reader-topbar{background:#F7F4D5;border-bottom-color:rgba(10,51,35,0.15);}
+.reader-light .reader-fs-btn,.reader-light .reader-mode-btn{background:#e8e5c0;border-color:rgba(10,51,35,0.2);color:#1a2e10;}
+.reader-light .reader-back{color:#0A3323;}
+
+/* ADD VIEW */
 .add-view{position:absolute;inset:0;background:var(--bg);z-index:15;transform:translateY(100%);transition:transform 0.35s cubic-bezier(0.32,0.72,0,1);display:flex;flex-direction:column;max-width:480px;margin:0 auto;}
 .add-view.open{transform:translateY(0);}
 .add-header{padding:56px 20px 20px;display:flex;align-items:center;gap:12px;flex-shrink:0;}
@@ -104,11 +142,24 @@ textarea.ef-input{resize:none;line-height:1.6;}
 .add-title{font-size:20px;font-weight:bold;color:var(--beige);}
 .add-body{flex:1;padding:0 20px;overflow-y:auto;scrollbar-width:none;}
 .add-body::-webkit-scrollbar{display:none;}
-.drop-zone{border:1.5px dashed var(--border2);border-radius:20px;padding:44px 20px;display:flex;flex-direction:column;align-items:center;gap:12px;cursor:pointer;margin-bottom:24px;transition:border-color 0.2s,background 0.2s;}
+.drop-zone{border:1.5px dashed var(--border2);border-radius:20px;padding:44px 20px;display:flex;flex-direction:column;align-items:center;gap:12px;cursor:pointer;margin-bottom:16px;transition:border-color 0.2s,background 0.2s;}
 .drop-zone.dragover{border-color:var(--moss);background:rgba(131,153,88,0.08);}
 .drop-zone-title{font-size:16px;font-weight:bold;color:var(--text2);}
 .drop-zone-sub{font-size:13px;color:var(--text3);text-align:center;line-height:1.6;}
 .file-input{display:none;}
+.batch-note{font-size:12px;color:var(--text3);text-align:center;margin-bottom:20px;line-height:1.6;}
+
+/* BATCH PROGRESS */
+.batch-progress{display:none;flex-direction:column;gap:14px;padding:20px 0;}
+.batch-progress.show{display:flex;}
+.batch-title{font-size:15px;font-weight:bold;color:var(--beige);}
+.batch-sub{font-size:12px;color:var(--text3);}
+.progress-bar-wrap{background:var(--bg3);border-radius:20px;height:8px;overflow:hidden;}
+.progress-bar{height:100%;background:var(--moss);border-radius:20px;transition:width 0.3s;width:0%;}
+.batch-done-btn{background:var(--moss);border:none;border-radius:24px;color:var(--bg);font-family:Verdana,sans-serif;font-size:15px;font-weight:bold;padding:14px;cursor:pointer;display:none;}
+.batch-done-btn.show{display:block;}
+
+/* SINGLE PREVIEW */
 .processing{display:none;flex-direction:column;align-items:center;gap:12px;padding:30px 0;}
 .processing.show{display:flex;}
 .spinner{width:34px;height:34px;border:2px solid var(--border);border-top-color:var(--moss);border-radius:50%;animation:spin 0.8s linear infinite;}
@@ -127,6 +178,7 @@ textarea.ef-input{resize:none;line-height:1.6;}
 </head>
 <body>
 <div id="app">
+  <!-- LIBRARY -->
   <div class="header">
     <div class="header-top">
       <span class="app-name">my library</span>
@@ -150,17 +202,15 @@ textarea.ef-input{resize:none;line-height:1.6;}
       <div class="pill" data-filter="alternate universe - canon divergence">au canon div</div>
     </div>
   </div>
-
   <div class="grid-scroll">
     <div class="grid" id="grid"></div>
     <div class="empty-state" id="empty-state">
       <svg width="52" height="52" viewBox="0 0 48 48" fill="none"><rect x="10" y="6" width="22" height="30" rx="3" stroke="#839958" stroke-width="1.5"/><rect x="16" y="10" width="22" height="30" rx="3" stroke="#839958" stroke-width="1.5"/><line x1="20" y1="18" x2="32" y2="18" stroke="#839958" stroke-width="1.5" stroke-linecap="round"/><line x1="20" y1="22" x2="32" y2="22" stroke="#839958" stroke-width="1.5" stroke-linecap="round"/></svg>
       <div class="empty-title">your shelf is empty</div>
-      <div class="empty-sub">tap add book below to import your first epub from google drive</div>
+      <div class="empty-sub">tap add book below to import your epubs</div>
     </div>
     <div class="no-results" id="no-results" style="display:none;">no books match your search</div>
   </div>
-
   <div class="bottom-nav">
     <div class="nav-item active" id="nav-library" onclick="showLibrary()">
       <svg width="22" height="22" viewBox="0 0 20 20" fill="none"><rect x="3" y="3" width="6" height="8" rx="1.5" stroke="currentColor" stroke-width="1.5"/><rect x="11" y="3" width="6" height="8" rx="1.5" stroke="currentColor" stroke-width="1.5"/><rect x="3" y="13" width="6" height="4" rx="1.5" stroke="currentColor" stroke-width="1.5"/><rect x="11" y="13" width="6" height="4" rx="1.5" stroke="currentColor" stroke-width="1.5"/></svg>
@@ -174,51 +224,86 @@ textarea.ef-input{resize:none;line-height:1.6;}
     </div>
   </div>
 
-  <div class="detail-page" id="detail-page">
-    <div class="detail-topbar">
-      <div class="detail-back" onclick="closeDetail()">
+  <!-- DETAIL PAGE -->
+  <div class="page" id="detail-page">
+    <div class="topbar">
+      <div class="tb-back" onclick="closeDetail()">
         <svg width="18" height="18" viewBox="0 0 16 16" fill="none"><path d="M10 3L5 8l5 5" stroke="#839958" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
         library
       </div>
-      <button class="detail-edit-btn" onclick="openEdit()">edit</button>
+      <button class="tb-btn" onclick="openEdit()">edit</button>
     </div>
-    <div class="detail-scroll" id="detail-scroll"></div>
+    <div class="page-scroll" id="detail-scroll"></div>
   </div>
 
-  <div class="edit-page" id="edit-page">
-    <div class="edit-topbar">
-      <div class="edit-back" onclick="closeEdit()">
+  <!-- EDIT PAGE -->
+  <div class="page z30" id="edit-page">
+    <div class="topbar">
+      <div class="tb-back" onclick="closeEdit()">
         <svg width="18" height="18" viewBox="0 0 16 16" fill="none"><path d="M10 3L5 8l5 5" stroke="#839958" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
         back
       </div>
-      <button class="edit-save-btn" onclick="saveEdit()">save</button>
+      <button class="tb-btn-moss" onclick="saveEdit()">save</button>
     </div>
     <div class="edit-body" id="edit-body"></div>
   </div>
 
+  <!-- READER PAGE -->
+  <div class="reader-page" id="reader-page">
+    <div class="reader-topbar">
+      <div class="reader-back" onclick="closeReader()">
+        <svg width="18" height="18" viewBox="0 0 16 16" fill="none"><path d="M10 3L5 8l5 5" stroke="#839958" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        back
+      </div>
+      <div class="reader-controls">
+        <button class="reader-fs-btn" onclick="changeFontSize(-1)">A−</button>
+        <button class="reader-fs-btn" onclick="changeFontSize(1)">A+</button>
+        <button class="reader-mode-btn" id="mode-btn" onclick="toggleReaderMode()">☀ light</button>
+      </div>
+    </div>
+    <div class="reader-scroll" id="reader-scroll">
+      <div class="reader-title" id="reader-title"></div>
+      <div class="reader-author" id="reader-author"></div>
+      <div class="reader-divider"></div>
+      <div class="reader-content" id="reader-content"></div>
+    </div>
+  </div>
+
+  <!-- ADD VIEW -->
   <div class="add-view" id="add-view">
     <div class="add-header">
       <div class="back-btn" onclick="showLibrary()">
         <svg width="17" height="17" viewBox="0 0 16 16" fill="none"><path d="M10 3L5 8l5 5" stroke="#839958" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </div>
-      <span class="add-title">add a book</span>
+      <span class="add-title">add books</span>
     </div>
     <div class="add-body">
       <div class="drop-zone" id="drop-zone" onclick="document.getElementById('file-input').click()">
         <svg width="40" height="40" viewBox="0 0 40 40" fill="none"><rect x="6" y="6" width="18" height="24" rx="3" stroke="#839958" stroke-width="1.5"/><rect x="12" y="10" width="18" height="24" rx="3" stroke="#D3968C" stroke-width="1.5" stroke-dasharray="3 2"/><path d="M21 22v6M18 25l3 3 3-3" stroke="#F7F4D5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        <div class="drop-zone-title">tap to choose your epub</div>
-        <div class="drop-zone-sub">pick it from google drive or your downloads</div>
+        <div class="drop-zone-title">tap to choose epubs</div>
+        <div class="drop-zone-sub">pick one or many from google drive</div>
       </div>
-      <input type="file" id="file-input" class="file-input" accept=".epub">
+      <p class="batch-note">you can select multiple files at once for batch import — all books will be added automatically</p>
+      <input type="file" id="file-input" class="file-input" accept=".epub" multiple>
+
+      <!-- BATCH PROGRESS -->
+      <div class="batch-progress" id="batch-progress">
+        <div class="batch-title" id="batch-title">importing books...</div>
+        <div class="batch-sub" id="batch-sub">0 of 0</div>
+        <div class="progress-bar-wrap"><div class="progress-bar" id="progress-bar"></div></div>
+        <button class="batch-done-btn" id="batch-done-btn" onclick="showLibrary()">done — view my library</button>
+      </div>
+
+      <!-- SINGLE PREVIEW -->
       <div class="processing" id="processing"><div class="spinner"></div><div class="proc-text">reading your epub...</div></div>
       <div class="preview-card" id="preview-card">
         <div class="preview-top">
           <div class="preview-cover" id="preview-cover-wrap"></div>
           <div><div class="preview-title" id="preview-title-text"></div><div class="preview-author" id="preview-author-text"></div></div>
         </div>
-        <div class="ef"><div class="ef-label">fandom</div><input class="ef-input" id="field-fandom" type="text" placeholder="e.g. MDZS"></div>
-        <div class="ef"><div class="ef-label">relationship</div><input class="ef-input" id="field-relationship" type="text" placeholder="e.g. Lan Wangji / Wei Wuxian"></div>
-        <div class="ef"><div class="ef-label">matching tags</div><input class="ef-input" id="field-tags" type="text" placeholder="e.g. fluff, found family"></div>
+        <div class="ef"><div class="ef-label">fandom</div><input class="ef-input" id="field-fandom" type="text"></div>
+        <div class="ef"><div class="ef-label">relationship</div><input class="ef-input" id="field-relationship" type="text"></div>
+        <div class="ef"><div class="ef-label">matching tags</div><input class="ef-input" id="field-tags" type="text"></div>
         <div class="ef"><div class="ef-label">rating</div>
           <select class="ef-input" id="field-rating">
             <option value="NR">Not Rated</option>
@@ -229,7 +314,7 @@ textarea.ef-input{resize:none;line-height:1.6;}
           </select>
         </div>
         <div class="ef"><div class="ef-label">word count</div><input class="ef-input" id="field-wordcount" type="text" placeholder="e.g. 89,421"></div>
-        <div class="ef"><div class="ef-label">summary</div><textarea class="ef-input" id="field-summary" rows="4" placeholder="summary..."></textarea></div>
+        <div class="ef"><div class="ef-label">summary</div><textarea class="ef-input" id="field-summary" rows="4"></textarea></div>
         <div class="ef"><div class="ef-label">google drive link (optional)</div><input class="ef-input" id="field-link" type="text" placeholder="paste drive link here"></div>
         <button class="save-btn" onclick="saveBook()">save to library</button>
       </div>
@@ -264,15 +349,18 @@ const FANDOM_MAP=[
   {short:"Supernatural",matches:["supernatural"]},
 ];
 const RATING_FULL={NR:"Not Rated",G:"General Audiences",T:"Teen & Up",M:"Mature",E:"Explicit"};
-const NOISE_RE=[/^(gen|m\/m|f\/f|f\/m|multi|no archive warnings|creator chose not|graphic depictions|major character death|rape|non-con|underage)/i,/^(teen and up|general audiences|mature|explicit|not rated)/i,/^(slow burn|hurt\/comfort|romance|drama|humor|adventure|mystery|horror|tragedy)/i,/^(oneshot|one-shot|multi-chapter|completed|wip|work in progress)/i,/\d+k?\+?\s*words/i,/^(fanworks|fanart|podfic)/i,/^(ridiculously long notes|action\/adventure|worldbuilding)/i];
+const NOISE_RE=[/^(gen|m\/m|f\/f|f\/m|multi|no archive warnings|creator chose not|graphic depictions|major character death|rape|non-con|underage)/i,/^(teen and up|general audiences|mature|explicit|not rated)/i,/^(slow burn|hurt\/comfort|romance|drama|humor|adventure|mystery|horror|tragedy)/i,/^(oneshot|one-shot|multi-chapter|completed|wip|work in progress)/i,/\d+k?\+?\s*words/i,/^(fanworks|fanart|podfic)/i,/^(ridiculously long|action\/adventure|worldbuilding|magic returns|bamf)/i];
 
 function mapFandom(s){const sl=s.toLowerCase();for(const f of FANDOM_MAP){if(f.matches.some(m=>sl.includes(m.toLowerCase())))return f.short;}return null;}
-function isRel(s){return(s.includes('/')&&!s.toLowerCase().includes('alternate universe')&&!s.toLowerCase().includes('au -')&&s.split('/').length<=4&&s.length<80)||s.toLowerCase().includes(' x ');}
+function isRel(s){return(s.includes('/')&&!s.toLowerCase().includes('alternate universe')&&!s.toLowerCase().includes('au -')&&s.split('/').length<=4&&s.length<80)||(s.toLowerCase().includes(' x ')&&s.length<60);}
 function isNoise(s){return NOISE_RE.some(r=>r.test(s.trim()));}
 function mapRating(s){const sl=s.toLowerCase();if(sl.includes('explicit'))return'E';if(sl.includes('mature'))return'M';if(sl.includes('teen and up')||sl.includes('teen & up'))return'T';if(sl.includes('general audiences'))return'G';return'NR';}
 
 let library=JSON.parse(localStorage.getItem('ao3library')||'[]');
 let currentIdx=null;
+let readerFontSize=17;
+let readerLight=false;
+
 function save(){localStorage.setItem('ao3library',JSON.stringify(library));}
 function rc(r){return{NR:'rating-NR',G:'rating-G',T:'rating-T',M:'rating-M',E:'rating-E'}[r]||'rating-NR';}
 
@@ -305,9 +393,10 @@ function openDetail(idx){
   const pinkSet=['fluff','angst','angst with a happy ending','crack','crack treated seriously','found family','bruce wayne is a good parent'];
   const tags=b.tags?b.tags.split(',').map(t=>t.trim()).filter(Boolean):[];
   const rCode=b.rating||'NR';
+  const hasContent=!!(b.epubContent&&b.epubContent.length>0);
   document.getElementById('detail-scroll').innerHTML=`
     <div class="detail-hero">
-      <div class="detail-cover">${b.cover?`<img src="${b.cover}" alt="${b.title}">`:`<div class="detail-cover-placeholder"><svg width="32" height="32" viewBox="0 0 24 24" fill="none"><rect x="4" y="3" width="12" height="16" rx="2" stroke="#839958" stroke-width="1.5"/></svg></div>`}</div>
+      <div class="detail-cover">${b.cover?`<img src="${b.cover}" alt="${b.title}">`:`<div class="detail-cover-ph"><svg width="32" height="32" viewBox="0 0 24 24" fill="none"><rect x="4" y="3" width="12" height="16" rx="2" stroke="#839958" stroke-width="1.5"/></svg></div>`}</div>
       <div class="detail-hero-info">
         <div class="detail-title">${b.title}</div>
         <div class="detail-author">by ${b.author||'unknown'}</div>
@@ -319,12 +408,15 @@ function openDetail(idx){
     </div>
     <div class="stat-row">
       <div class="stat-block"><div class="stat-label">word count</div><div class="stat-val">${b.wordCount||'N/A'}</div></div>
-      <div class="stat-block"><div class="stat-label">rating code</div><div class="stat-val">${rCode}</div></div>
+      <div class="stat-block"><div class="stat-label">rating</div><div class="stat-val">${RATING_FULL[rCode]||'Not Rated'}</div></div>
     </div>
     ${b.relationship?`<div class="detail-section"><div class="section-title">relationship</div><div class="detail-info-block">${b.relationship}</div></div>`:''}
     ${tags.length?`<div class="detail-section"><div class="section-title">tags</div><div class="tag-wrap">${tags.map(t=>`<span class="dtag ${pinkSet.some(p=>t.toLowerCase().includes(p))?'pink':''}">${t}</span>`).join('')}</div></div>`:''}
     ${b.summary?`<div class="detail-section"><div class="section-title">summary</div><div class="summary-box">${b.summary}</div></div>`:''}
-    <button class="dl-btn" onclick="downloadBook()"><svg width="18" height="18" viewBox="0 0 16 16" fill="none"><path d="M8 2v8M5 7l3 3 3-3" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M2 12h12" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>download to phone</button>
+    <div class="btn-row">
+      ${hasContent?`<button class="read-btn" onclick="openReader(${idx})"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="2" y="2" width="12" height="12" rx="2" stroke="currentColor" stroke-width="1.5"/><line x1="5" y1="6" x2="11" y2="6" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/><line x1="5" y1="9" x2="11" y2="9" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>read now</button>`:''}
+      ${b.driveLink?`<button class="dl-btn" onclick="downloadBook()"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 2v8M5 7l3 3 3-3" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M2 12h12" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>open in drive</button>`:`<button class="dl-btn" onclick="downloadBook()"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 2v8M5 7l3 3 3-3" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M2 12h12" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>download</button>`}
+    </div>
     <div style="height:24px;"></div>`;
   document.getElementById('detail-page').classList.add('open');
   document.getElementById('detail-scroll').scrollTop=0;
@@ -337,9 +429,40 @@ function downloadBook(){
   const b=library[currentIdx];
   if(b.driveLink)window.open(b.driveLink,'_blank');
   else if(b.fileData){const a=document.createElement('a');a.href=b.fileData;a.download=b.title+'.epub';a.click();}
-  else alert('No file link saved. Tap edit and add your Google Drive link.');
+  else alert('No file link saved. Tap edit to add your Google Drive link.');
 }
 
+// READER
+function openReader(idx){
+  const b=library[idx];
+  if(!b.epubContent||b.epubContent.length===0){alert('No reading content found for this book.');return;}
+  document.getElementById('reader-title').textContent=b.title;
+  document.getElementById('reader-author').textContent='by '+(b.author||'unknown');
+  document.getElementById('reader-content').innerHTML=b.epubContent;
+  document.documentElement.style.setProperty('--reader-fs',readerFontSize+'px');
+  const rp=document.getElementById('reader-page');
+  rp.classList.remove('reader-light');
+  if(readerLight)rp.classList.add('reader-light');
+  rp.classList.add('open');
+  document.getElementById('reader-scroll').scrollTop=0;
+}
+
+function closeReader(){document.getElementById('reader-page').classList.remove('open');}
+
+function changeFontSize(delta){
+  readerFontSize=Math.max(13,Math.min(24,readerFontSize+delta));
+  document.documentElement.style.setProperty('--reader-fs',readerFontSize+'px');
+}
+
+function toggleReaderMode(){
+  readerLight=!readerLight;
+  const rp=document.getElementById('reader-page');
+  const btn=document.getElementById('mode-btn');
+  if(readerLight){rp.classList.add('reader-light');btn.textContent='🌙 dark';}
+  else{rp.classList.remove('reader-light');btn.textContent='☀ light';}
+}
+
+// EDIT
 function openEdit(){
   if(currentIdx===null)return;
   const b=library[currentIdx];
@@ -373,25 +496,48 @@ function saveEdit(){
   save();renderGrid();closeEdit();openDetail(currentIdx);
 }
 
+// NAV
 document.getElementById('filter-row').addEventListener('click',e=>{
   const p=e.target.closest('.pill');if(!p)return;
   document.querySelectorAll('.pill').forEach(x=>x.classList.remove('active'));
   p.classList.add('active');renderGrid();
 });
 document.getElementById('search').addEventListener('input',renderGrid);
-
 function showLibrary(){document.getElementById('add-view').classList.remove('open');document.getElementById('nav-library').classList.add('active');document.getElementById('nav-add').classList.remove('active');}
-function showAdd(){document.getElementById('add-view').classList.add('open');document.getElementById('nav-add').classList.add('active');document.getElementById('nav-library').classList.remove('active');}
+function showAdd(){
+  document.getElementById('add-view').classList.add('open');
+  document.getElementById('nav-add').classList.add('active');
+  document.getElementById('nav-library').classList.remove('active');
+  document.getElementById('batch-progress').classList.remove('show');
+  document.getElementById('preview-card').classList.remove('show');
+  document.getElementById('processing').classList.remove('show');
+  document.getElementById('batch-done-btn').classList.remove('show');
+}
 
-document.getElementById('file-input').addEventListener('change',e=>{const f=e.target.files[0];if(f)handleEpub(f);e.target.value='';});
+// FILE INPUT — supports multiple
+document.getElementById('file-input').addEventListener('change',e=>{
+  const files=Array.from(e.target.files);
+  if(files.length===0)return;
+  if(files.length===1)handleSingle(files[0]);
+  else handleBatch(files);
+  e.target.value='';
+});
 const dz=document.getElementById('drop-zone');
 dz.addEventListener('dragover',e=>{e.preventDefault();dz.classList.add('dragover');});
 dz.addEventListener('dragleave',()=>dz.classList.remove('dragover'));
-dz.addEventListener('drop',e=>{e.preventDefault();dz.classList.remove('dragover');const f=e.dataTransfer.files[0];if(f)handleEpub(f);});
+dz.addEventListener('drop',e=>{
+  e.preventDefault();dz.classList.remove('dragover');
+  const files=Array.from(e.dataTransfer.files).filter(f=>f.name.endsWith('.epub'));
+  if(files.length===0)return;
+  if(files.length===1)handleSingle(files[0]);
+  else handleBatch(files);
+});
 
-async function handleEpub(file){
+// SINGLE FLOW
+async function handleSingle(file){
   document.getElementById('processing').classList.add('show');
   document.getElementById('preview-card').classList.remove('show');
+  document.getElementById('batch-progress').classList.remove('show');
   try{
     const buf=await file.arrayBuffer();
     const data=await parseEpub(buf,file.name);
@@ -410,51 +556,111 @@ async function handleEpub(file){
     pcw.innerHTML=data.cover?`<img src="${data.cover}" style="width:100%;height:100%;object-fit:cover;border-radius:8px;">`:'';
     document.getElementById('processing').classList.remove('show');
     document.getElementById('preview-card').classList.add('show');
-  }catch(err){document.getElementById('processing').classList.remove('show');alert('Could not read this epub. Please try again.');}
+  }catch(err){document.getElementById('processing').classList.remove('show');alert('Could not read this epub.');}
 }
 
+// BATCH FLOW
+async function handleBatch(files){
+  document.getElementById('preview-card').classList.remove('show');
+  document.getElementById('processing').classList.remove('show');
+  const bp=document.getElementById('batch-progress');
+  bp.classList.add('show');
+  const total=files.length;
+  let done=0,skipped=0;
+  document.getElementById('batch-title').textContent=`importing ${total} books...`;
+  document.getElementById('batch-sub').textContent=`0 of ${total}`;
+  document.getElementById('progress-bar').style.width='0%';
+
+  for(const file of files){
+    try{
+      const buf=await file.arrayBuffer();
+      const data=await parseEpub(buf,file.name);
+      // skip duplicates by title
+      const exists=library.some(b=>b.title.toLowerCase()===data.title.toLowerCase());
+      if(!exists){
+        library.unshift({...data,wordCount:'N/A',driveLink:'',id:Date.now()+Math.random()});
+      }else{skipped++;}
+    }catch(e){skipped++;}
+    done++;
+    document.getElementById('batch-sub').textContent=`${done} of ${total}${skipped>0?' ('+skipped+' skipped)':''}`;
+    document.getElementById('progress-bar').style.width=Math.round(done/total*100)+'%';
+  }
+  save();renderGrid();
+  document.getElementById('batch-title').textContent=`all done! ${done-skipped} books added`;
+  document.getElementById('batch-done-btn').classList.add('show');
+}
+
+// EPUB PARSER
 async function parseEpub(buffer,filename){
   const zip=await JSZip.loadAsync(buffer);
   let opfPath=null;
   const con=zip.file('META-INF/container.xml');
   if(con){const xml=await con.async('text');const m=xml.match(/full-path="([^"]+\.opf)"/);if(m)opfPath=m[1];}
   if(!opfPath){for(const n of Object.keys(zip.files)){if(n.endsWith('.opf')){opfPath=n;break;}}}
-  const result={title:'',author:'',fandom:'',relationship:'',tags:'',summary:'',cover:null,rating:'NR'};
-  if(opfPath){
-    const opfText=await zip.file(opfPath).async('text');
-    const parser=new DOMParser();
-    const doc=parser.parseFromString(opfText,'application/xml');
-    const get=tag=>{const el=doc.querySelector(tag);return el?el.textContent.trim():'';};
-    result.title=get('title')||filename.replace('.epub','');
-    result.author=get('creator');
-    result.summary=get('description').replace(/<[^>]+>/g,'').trim();
-    const rights=get('rights');
-    if(rights)result.rating=mapRating(rights);
-    const subjects=Array.from(doc.querySelectorAll('subject')).map(s=>s.textContent.trim()).filter(Boolean);
-    const fandoms=new Set(),rels=[],matched=[];
-    for(const s of subjects){
-      const sl=s.toLowerCase();
-      if(['not rated','general audiences','teen and up','mature','explicit'].some(r=>sl.includes(r))){result.rating=mapRating(s);continue;}
-      if(YOUR_TAGS.some(t=>sl.includes(t))){matched.push(s);continue;}
-      if(isNoise(s))continue;
-      if(isRel(s)){rels.push(s);continue;}
-      const mapped=mapFandom(s);
-      if(mapped){fandoms.add(mapped);continue;}
-      if(s.length>60||s.includes('|'))continue;
+  const result={title:'',author:'',fandom:'',relationship:'',tags:'',summary:'',cover:null,rating:'NR',epubContent:''};
+  if(!opfPath){result.title=filename.replace('.epub','');return result;}
+
+  const opfText=await zip.file(opfPath).async('text');
+  const parser=new DOMParser();
+  const doc=parser.parseFromString(opfText,'application/xml');
+  const get=tag=>{const el=doc.querySelector(tag);return el?el.textContent.trim():'';};
+  const base=opfPath.includes('/')?opfPath.substring(0,opfPath.lastIndexOf('/')+1):'';
+
+  result.title=get('title')||filename.replace('.epub','');
+  result.author=get('creator');
+  result.summary=get('description').replace(/<[^>]+>/g,'').trim();
+  const rights=get('rights');
+  if(rights)result.rating=mapRating(rights);
+
+  const subjects=Array.from(doc.querySelectorAll('subject')).map(s=>s.textContent.trim()).filter(Boolean);
+  const fandoms=new Set(),rels=[],matched=[];
+  for(const s of subjects){
+    const sl=s.toLowerCase();
+    if(['not rated','general audiences','teen and up','mature','explicit'].some(r=>sl.includes(r))){result.rating=mapRating(s);continue;}
+    if(YOUR_TAGS.some(t=>sl.includes(t))){matched.push(s);continue;}
+    if(isNoise(s))continue;
+    if(isRel(s)){rels.push(s);continue;}
+    const mapped=mapFandom(s);
+    if(mapped){fandoms.add(mapped);continue;}
+    if(s.length>60||s.includes('|'))continue;
+  }
+  result.fandom=Array.from(fandoms).join(', ');
+  result.relationship=rels.slice(0,3).join(', ');
+  result.tags=matched.join(', ');
+
+  // cover
+  let coverFile=null;
+  const mc=doc.querySelector('meta[name="cover"]');
+  if(mc){const item=doc.querySelector(`item[id="${mc.getAttribute('content')}"]`);if(item)coverFile=item.getAttribute('href');}
+  if(!coverFile){for(const item of doc.querySelectorAll('item')){const h=item.getAttribute('href')||'';if(h.toLowerCase().includes('cover')&&/\.(jpg|jpeg|png)$/i.test(h)){coverFile=h;break;}}}
+  if(coverFile){
+    const imgFile=zip.file(base+coverFile)||zip.file(coverFile);
+    if(imgFile){const imgData=await imgFile.async('base64');const mime=coverFile.toLowerCase().endsWith('.png')?'image/png':'image/jpeg';result.cover=`data:${mime};base64,${imgData}`;}
+  }
+
+  // reading content — get spine order
+  const spineItems=[];
+  const spine=doc.querySelector('spine');
+  if(spine){
+    const idrefs=Array.from(spine.querySelectorAll('itemref')).map(i=>i.getAttribute('idref'));
+    for(const idref of idrefs){
+      const item=doc.querySelector(`item[id="${idref}"]`);
+      if(item){const href=item.getAttribute('href');if(href&&/\.(xhtml|html|htm)$/i.test(href))spineItems.push(href);}
     }
-    result.fandom=Array.from(fandoms).join(', ');
-    result.relationship=rels.slice(0,3).join(', ');
-    result.tags=matched.join(', ');
-    let coverFile=null;
-    const mc=doc.querySelector('meta[name="cover"]');
-    if(mc){const item=doc.querySelector(`item[id="${mc.getAttribute('content')}"]`);if(item)coverFile=item.getAttribute('href');}
-    if(!coverFile){for(const item of doc.querySelectorAll('item')){const h=item.getAttribute('href')||'';if(h.toLowerCase().includes('cover')&&/\.(jpg|jpeg|png)$/i.test(h)){coverFile=h;break;}}}
-    if(coverFile){
-      const base=opfPath.includes('/')?opfPath.substring(0,opfPath.lastIndexOf('/')+1):'';
-      const imgFile=zip.file(base+coverFile)||zip.file(coverFile);
-      if(imgFile){const imgData=await imgFile.async('base64');const mime=coverFile.toLowerCase().endsWith('.png')?'image/png':'image/jpeg';result.cover=`data:${mime};base64,${imgData}`;}
-    }
-  }else{result.title=filename.replace('.epub','');}
+  }
+  // parse content
+  const contentParts=[];
+  for(const href of spineItems){
+    const f=zip.file(base+href)||zip.file(href);
+    if(!f)continue;
+    const html=await f.async('text');
+    const cdoc=parser.parseFromString(html,'text/html');
+    // remove script/style/nav
+    cdoc.querySelectorAll('script,style,nav').forEach(el=>el.remove());
+    const body=cdoc.querySelector('body');
+    if(body)contentParts.push(body.innerHTML);
+  }
+  result.epubContent=contentParts.join('<hr>');
   return result;
 }
 
